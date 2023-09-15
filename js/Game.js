@@ -17,8 +17,12 @@ class Game{
       new Phrase('do or do not there is no try')
     ]
 
+    // this.phrases = [
+    //   new Phrase('game over'),
+    //   new Phrase('bB')
+    // ]
+
     this.activePhrase = null;
-    console.log("ABC-");
   }
   
   //Remove the entry "Overlay" thats hiding the game,
@@ -28,7 +32,6 @@ class Game{
     screenOverlay.style.display = 'none';
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
-    console.log("another go mate?");
   }
 
   //randomly retrieves one of the phrases stored in the phrases array
@@ -44,13 +47,16 @@ class Game{
     let guessedLetter = button.textContent
     let letterFound = this.activePhrase.checkLetter(guessedLetter)
 
+    console.log("BB Checked Letter is:"+guessedLetter)
+    console.log("BB Found:"+letterFound)
+
     //check if letter is found
     if(!letterFound){
       button.classList.add('wrong')
       this.removeLife()
     }else{
       button.classList.add('chosen')
-      this.activePhrase.showMatchedLetter(letterFound)
+      this.activePhrase.showMatchedLetter(guessedLetter)
       //now see if the game is done
       if(this.checkForWin()){
         this.gameOver(true)
@@ -60,11 +66,14 @@ class Game{
 
   //remove a heart/life and end game if hearts <= 0
   removeLife(){
-    let allHeart = document.querySelectorAll('.tries')
+    let allHearts = document.querySelectorAll('.tries img')
 
-    if(allHeart < 5){
+    if(this.missed < 5){
+      allHearts[this.missed].src = 'images/lostHeart.png';
       this.missed++;
-    }else{
+    }
+     
+    if(this.missed == 5){
       this.gameOver(false)
     }
   }
@@ -79,14 +88,14 @@ class Game{
   gameOver(results){
     let overlay = document.getElementById('overlay');
     const successMessage = document.getElementById('game-over-message');
-    screenOverlay.style.display = 'block';
+    overlay.style.display = 'block';
 
     if(results){
-      screenOverlay.className = 'win';      
+      overlay.className = 'win';      
       successMessage.textContent = "Nice Job!!!"
     }else{
-      screenOverlay.className = 'lose';
-      successMessage.textContent = "Lost, another go brother?"
+      overlay.className = 'lose';
+      successMessage.textContent = "Lost, give it another go brother"
     }
   }
 

@@ -6,8 +6,6 @@
  *app.js to create a new instance of the `Game` class and add event listeners for the start
  *button and onscreen keyboard buttons.*/
 
-// const phrase = new Phrase(); game = new Game();
-
 /*
  * 4) Updating the app.js file, with "startNewGame"
  */
@@ -16,20 +14,20 @@ let game;
 let start
 
 const startGameButton = document.getElementById('btn__reset');
-const keyRowButtons = document.querySelectorAll('.key');
+const keys = document.querySelectorAll('.key');
 
 //Add an event listener for clicking "Start Game"
+//Restart the game, 
 startGameButton.addEventListener('click', () => {
   resetGame();
   game = new Game();
   game.startGame();
-  console.log("HELP");
 })
 
 //Add an event listener for all 26 letter buttons
-keyRowButtons.forEach(button => {
-  button.addEventListener('click', (e) => {
-      game.handleInteraction(e.target);
+keys.forEach(button => {
+  button.addEventListener('click', (e) => {  
+    game.handleInteraction(e.target);
   })
 })
 
