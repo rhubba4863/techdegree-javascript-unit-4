@@ -10,11 +10,11 @@ class Game{
   constructor(){
     this.missed = 0;
     this.phrases = [
-      new Phrase('Jumanji')
-      // new Phrase('A Game for those who wish to find a way to leave their world behind'),
-      // new Phrase('Merry Christmas'),
-      // new Phrase('The closer we are to danger the farther we are from harm'),
-      // new Phrase('do or do not there is no try')
+      new Phrase('Jumanji'),
+      new Phrase('A Game for those who wish to find a way to leave their world behind'),
+      new Phrase('Merry Christmas'),
+      new Phrase('The closer we are to danger the farther we are from harm'),
+      new Phrase('do or do not there is no try')
     ]
 
     this.activePhrase = null;
