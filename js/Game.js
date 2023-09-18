@@ -10,17 +10,12 @@ class Game{
   constructor(){
     this.missed = 0;
     this.phrases = [
-      new Phrase('Jumanji'),
-      new Phrase('A Game for those who wish to find a way to leave their world behind'),
-      new Phrase('Merry Christmas'),
-      new Phrase('The closer we are to danger the farther we are from harm'),
-      new Phrase('do or do not there is no try')
+      new Phrase('Jumanji')
+      // new Phrase('A Game for those who wish to find a way to leave their world behind'),
+      // new Phrase('Merry Christmas'),
+      // new Phrase('The closer we are to danger the farther we are from harm'),
+      // new Phrase('do or do not there is no try')
     ]
-
-    // this.phrases = [
-    //   new Phrase('game over'),
-    //   new Phrase('bB')
-    // ]
 
     this.activePhrase = null;
   }
@@ -47,8 +42,8 @@ class Game{
     let guessedLetter = button.textContent
     let letterFound = this.activePhrase.checkLetter(guessedLetter)
 
-    console.log("BB Checked Letter is:"+guessedLetter)
-    console.log("BB Found:"+letterFound)
+    // console.log("BB Checked Letter is:"+guessedLetter)
+    // console.log("BB Found:"+letterFound)
 
     //check if letter is found
     if(!letterFound){
@@ -84,6 +79,54 @@ class Game{
     return (hiddenLetterCount.length === 0);
   }
 
+  //when game failed, remove all letters from screen
+  hideAllLetters(){
+    const myPhrase = document.getElementById('phrase');
+    const ulChild = myPhrase.firstElementChild;
+    const letterToHide = ulChild.childNodes;
+    
+    //const letterToHide = document.getElementsByClassName("show");
+
+    //go through the list, editing each matching element to hide
+    for (let i = 0; i < letterToHide.length; i++){
+            
+      //console.log("FFFF: Text: "+letterToHide[i].textContent)
+      console.log("FFFF: "+letterToHide.length)
+
+      try{
+        //manipulate the class        
+        letterToHide[i].classList.add('hide');
+        letterToHide[i].classList.remove('show');
+
+        //remove style when a match is found
+        letterToHide[i].removeAttribute("style"); 
+        // letterToHide[i].style.transform = ""; 
+        // letterToHide[i].style.transition = "";
+      }catch(err){
+        
+      } 
+    }
+  }
+ 
+  // hideAllLetters(){
+  //   const letterToHide = document.getElementsByClassName("show");
+
+  //   //go through the list, editing each matching element to hide
+  //   for (let i = 0; i < letterToHide.length; i++){
+            
+  //     //console.log("FFFF: Text: "+letterToHide[i].textContent)
+  //     console.log("FFFF: "+letterToHide.length)
+
+  //     //manipulate the class        
+  //     letterToHide[i].classList.add('hide');
+  //     letterToHide[i].classList.remove('show');
+
+  //     //remove style when a match is found
+  //     letterToHide[i].style.transform = ""; 
+  //     letterToHide[i].style.transition = "";
+  //   }
+  // }
+
   //Reset the screen, admitting success or failure
   gameOver(results){
     let overlay = document.getElementById('overlay');
@@ -94,9 +137,9 @@ class Game{
       overlay.className = 'win';      
       successMessage.textContent = "Nice Job!!!"
     }else{
-      overlay.className = 'lose';
+      this.hideAllLetters();
+      overlay.className = 'lose'; 
       successMessage.textContent = "Lost, give it another go brother"
     }
   }
-
 }

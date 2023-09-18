@@ -9,7 +9,6 @@ class Phrase{
  **/
   constructor(phrase){
     this.phrase = phrase.toLowerCase();
-    console.log("Do ra me");
   }
 
   // this adds letter placeholders to the display when the game starts. 
@@ -34,9 +33,9 @@ class Phrase{
   //checks to see if the letter selected by the player matches 
   //a letter in the phrase.
   checkLetter(letter){
-    console.log("AA real phrase:"+this.phrase)
-    console.log("AA letter looked for:"+letter)
-    console.log("AA results:"+this.phrase.includes(letter))
+    // console.log("AA real phrase:"+this.phrase)
+    // console.log("AA letter looked for:"+letter)
+    // console.log("AA results:"+this.phrase.includes(letter))
 
     return this.phrase.includes(letter);
   }
@@ -45,9 +44,9 @@ class Phrase{
   // replace each selected element's hide CSS class with the show CSS class.
   showMatchedLetter(letter){
     const letterUsed = document.getElementsByClassName(letter);
-    console.log("CCC Times letter was found "+letterUsed.length)
-    console.log("CCC Times letter was found "+letter)
-    console.log("CCC "+letterUsed.length+"\n\n\n")
+    // console.log("CCC Times letter was found "+letterUsed.length)
+    // console.log("CCC Times letter was found "+letter)
+    // console.log("CCC "+letterUsed.length+"\n\n\n")
 
     //go through the list, editing each match to show
     for (let i = 0; i < letterUsed.length; i++){
